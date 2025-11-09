@@ -2,7 +2,7 @@
 
 int main()
 {
-    int     pid;
+    __pid_t pid;
     char    *str;
 
     pid = getpid();
