@@ -3,33 +3,32 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: osousa-d <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: otton-sousa <otton-sousa@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 20:54:01 by osousa-d          #+#    #+#              #
-#    Updated: 2025/08/11 20:54:15 by osousa-d         ###   ########.fr        #
+#    Updated: 2025/11/09 22:49:50 by otton-sousa      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
+NAME = ft_printf.a
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRC =	./src/ft_print_char.c  ./src/ft_print_str.c \
-		./src/ft_print_hex.c  ./src/ft_print_nbr.c\
-		./src/ft_print_pointer.c  ./src/ft_print_unsigned.c\
-		./src/ft_printf.c
+SRC =	./ft_print_char.c  ./ft_print_str.c \
+		./ft_print_hex.c  ./ft_print_nbr.c\
+		./ft_print_pointer.c  ./ft_print_unsigned.c\
+		./ft_printf.c
 
 OBJ = $(SRC:.c=.o)
 
-LIBFT_DIR = libft
+LIBFT_DIR = ../libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT)
-	cp $(LIBFT) $(NAME)
-	ar rcs $(NAME) $(OBJ)
+	ar rcs $(NAME) $(OBJ) $(LIBFT)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
