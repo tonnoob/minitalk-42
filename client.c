@@ -1,17 +1,17 @@
 #include "minitalk.h"
 
-void send_message(unsigned char	c, __pid_t server_pid)
+void send_message(unsigned char	byte, __pid_t server_pid)
 {
-	int	bit;	
+	int	byte;	
 
-	bit = 0;
-	while (bit < 7)
+	byte = 0;
+	while (byte < 7)
 	{
-		if (c & (7  ))
+		if (c & (byte << 7))
 			kill(server_pid, SIGUSR1);
 		else if
 			kill(server_pid, SIGUSR2);
-		bit++;
+		byte++;
 	}
 	
 
@@ -23,20 +23,18 @@ int	main(int argc, char **argv)
 {
 	__pid_t			server_pid;
 	int				i;
-	unsigned char	c;
 	char			*str;
 
 	if (argc != 3)
 	{
-		ft_printf("Invalid argument", stderr);
+		ft_printf(stderr, "Invalid argument", );
 		exit(EXIT_FAILURE);
 	}
 	server_pid = ft_atoi(argv[1]);
 	i = 0;
 	while (str[i])
 	{
-		c = str[i];
-		send_message(c, server_pid);
+		send_message((unsigned char)str[i], server_pid);
 		i++;
 	}
 }
