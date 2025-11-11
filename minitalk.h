@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minitalk.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otton-sousa <otton-sousa@student.42.fr>    +#+  +:+       +#+        */
+/*   By: osousa-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/08 02:32:07 by osousa-d          #+#    #+#             */
-/*   Updated: 2025/11/10 18:51:07 by otton-sousa      ###   ########.fr       */
+/*   Created: 2025/11/11 18:23:05 by osousa-d          #+#    #+#             */
+/*   Updated: 2025/11/11 18:23:10 by osousa-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,5 @@
 # include "libftprintf/libft/libft.h"
 # include <signal.h>
 # include <stdio.h>
-
 
 #endif

@@ -1,23 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   client.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: osousa-d <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/11 18:22:11 by osousa-d          #+#    #+#             */
+/*   Updated: 2025/11/11 18:22:18 by osousa-d         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minitalk.h"
 
-void send_message(unsigned char	byte, __pid_t server_pid)
+void	send_message(unsigned char byte, __pid_t server_pid)
 {
 	int	byte;	
 
-	byte = 0;
-	while (byte < 7)
+	byte = 7;
+	while (byte > 0)
 	{
-		if (c & (byte << 7))
+		if (1 & (byte << 7))
 			kill(server_pid, SIGUSR1);
-		else if
+		else
 			kill(server_pid, SIGUSR2);
-		byte++;
+		byte--;
 	}
-	
-
-
 }
-
 
 int	main(int argc, char **argv)
 {
@@ -27,7 +35,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 3)
 	{
-		ft_printf(stderr, "Invalid argument", );
+		ft_printf(stderr, "Invalid argument\n");
 		exit(EXIT_FAILURE);
 	}
 	server_pid = ft_atoi(argv[1]);
