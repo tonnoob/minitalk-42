@@ -14,16 +14,16 @@
 
 void	send_message(unsigned char byte, __pid_t server_pid)
 {
-	int	byte;	
+	int	bit;	
 
-	byte = 7;
-	while (byte > 0)
+	bit = 7;
+	while (bit >= 0)
 	{
-		if (1 & (byte << 7))
+		if (1 & (bit - 1))
 			kill(server_pid, SIGUSR1);
 		else
 			kill(server_pid, SIGUSR2);
-		byte--;
+		bit--;
 	}
 }
 
@@ -31,18 +31,21 @@ int	main(int argc, char **argv)
 {
 	__pid_t			server_pid;
 	int				i;
-	char			*str;
 
 	if (argc != 3)
 	{
-		ft_printf(stderr, "Invalid argument\n");
+		ft_printf("Invalid argument\n");
 		exit(EXIT_FAILURE);
 	}
 	server_pid = ft_atoi(argv[1]);
 	i = 0;
-	while (str[i])
+	while (argv[2][i])
 	{
-		send_message((unsigned char)str[i], server_pid);
+		
+		ft_printf("debug antes de pause");
+		send_message((unsigned char)argv[2][i], server_pid);
+		pause();
+		ft_printf("debug depois de pause");
 		i++;
 	}
 }
