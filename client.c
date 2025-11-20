@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osousa-d <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: otton-sousa <otton-sousa@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 18:22:11 by osousa-d          #+#    #+#             */
-/*   Updated: 2025/11/11 18:22:18 by osousa-d         ###   ########.fr       */
+/*   Updated: 2025/11/20 13:55:36 by otton-sousa      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,32 @@ void	send_message(unsigned char byte, __pid_t server_pid)
 	bit = 7;
 	while (bit >= 0)
 	{
-		if (1 & (bit - 1))
+		if ((byte >> bit) & 1)
 			kill(server_pid, SIGUSR1);
 		else
 			kill(server_pid, SIGUSR2);
 		bit--;
+		pause();
 	}
+}
+
+static void	client_handler(int sig, siginfo_t *info, void *context)
+{
+	(void)sig;
+	(void)info;
+	(void)context;
 }
 
 int	main(int argc, char **argv)
 {
-	__pid_t			server_pid;
-	int				i;
+	__pid_t				server_pid;
+	struct sigaction	sa;
+	int					i;
 
+	sa.sa_sigaction = client_handler;
+	sa.sa_flags = SA_SIGINFO;
+	sigemptyset(&sa.sa_mask);
+	sigaction(SIGUSR1, &sa, NULL);
 	if (argc != 3)
 	{
 		ft_printf("Invalid argument\n");
@@ -41,11 +54,8 @@ int	main(int argc, char **argv)
 	i = 0;
 	while (argv[2][i])
 	{
-		
-		ft_printf("debug antes de pause");
 		send_message((unsigned char)argv[2][i], server_pid);
-		pause();
-		ft_printf("debug depois de pause");
 		i++;
 	}
+	send_message('\0', server_pid);
 }

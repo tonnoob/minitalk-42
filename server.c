@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osousa-d <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: otton-sousa <otton-sousa@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 18:32:10 by osousa-d          #+#    #+#             */
-/*   Updated: 2025/11/11 18:32:14 by osousa-d         ###   ########.fr       */
+/*   Updated: 2025/11/20 13:57:00 by otton-sousa      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+
+static void	accumulate_buffer(unsigned char byte)
+{
+	int		i;
+	char	*buffer;
+
+	buffer = NULL;
+	i = 0;
+	if (byte != 0)
+	{
+		buffer[i] = byte;
+		i++;
+	}
+	if (byte == 0)
+		ft_printf("%s\n", buffer);
+}
 
 static void	handler_signal(int sig, siginfo_t *info, void *context)
 {
@@ -23,11 +39,11 @@ static void	handler_signal(int sig, siginfo_t *info, void *context)
 		pid_client = info->si_pid;
 	if (sig == SIGUSR1)
 		byte |= (1 << (7 - bit));
+	kill(pid_client, SIGUSR1);
 	bit++;
 	if (bit == 8)
 	{
-		write(1, &byte, 1);
-		kill(pid_client, SIGUSR1);
+		accumulate_buffer(byte);
 		if (byte == 0)
 		{	
 			write(1, "\n", 1);
