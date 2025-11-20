@@ -6,7 +6,7 @@
 /*   By: otton-sousa <otton-sousa@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 18:22:11 by osousa-d          #+#    #+#             */
-/*   Updated: 2025/11/20 13:55:36 by otton-sousa      ###   ########.fr       */
+/*   Updated: 2025/11/20 18:47:10 by otton-sousa      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,35 +16,30 @@ void	send_message(unsigned char byte, __pid_t server_pid)
 {
 	int	bit;	
 
-	bit = 7;
-	while (bit >= 0)
+	bit = 0;
+	while (bit <= 7)
 	{
 		if ((byte >> bit) & 1)
 			kill(server_pid, SIGUSR1);
 		else
 			kill(server_pid, SIGUSR2);
-		bit--;
+		bit++;
 		pause();
 	}
 }
 
-static void	client_handler(int sig, siginfo_t *info, void *context)
+static void	client_handler(int sig)
 {
 	(void)sig;
-	(void)info;
-	(void)context;
 }
 
 int	main(int argc, char **argv)
 {
 	__pid_t				server_pid;
-	struct sigaction	sa;
 	int					i;
 
-	sa.sa_sigaction = client_handler;
-	sa.sa_flags = SA_SIGINFO;
-	sigemptyset(&sa.sa_mask);
-	sigaction(SIGUSR1, &sa, NULL);
+
+	signal(SIGUSR1, client_handler);
 	if (argc != 3)
 	{
 		ft_printf("Invalid argument\n");
@@ -58,4 +53,6 @@ int	main(int argc, char **argv)
 		i++;
 	}
 	send_message('\0', server_pid);
+	pause();
+	return (0);
 }
