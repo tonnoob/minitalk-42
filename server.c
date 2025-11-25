@@ -12,14 +12,14 @@
 
 #include "minitalk.h"
 
-static void handler_signal(int sig, siginfo_t *info, void *context)
+static void	handler_signal(int sig, siginfo_t *info, void *context)
 {
 	static int				bit;
 	static unsigned char	byte;
 	static __pid_t			pid_client;
 
-	if (pid_client == 0)
-		pid_client = info->si_pid;
+	(void)context;
+	pid_client = info->si_pid;
 	if (sig == SIGUSR1)
 		byte |= (1 << bit);
 	bit++;
@@ -27,31 +27,25 @@ static void handler_signal(int sig, siginfo_t *info, void *context)
 	{
 		bit = 0;
 		if (byte == '\0')
-		{
 			kill(pid_client, SIGUSR2);
-			pid_client = 0;
-			return ;
-		}
 		else
-		{
 			write(1, &byte, 1);
-			byte = 0;
-		}
+		byte = 0;
 	}
 	kill(pid_client, SIGUSR1);
 }
 
-int main(void)
+int	main(void)
 {
-	struct sigaction sa;
+	struct sigaction	sa;
 
-	ft_printf("%d\n", getpid());
 	sa.sa_sigaction = handler_signal;
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = SA_SIGINFO;
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
-
+	ft_printf("PID Server: %d\n", getpid());
 	while (1)
 		pause();
+	return (EXIT_SUCCESS);
 }
