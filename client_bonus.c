@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osousa-d <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: otton-sousa <otton-sousa@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 18:41:41 by osousa-d          #+#    #+#             */
-/*   Updated: 2025/11/27 18:41:44 by osousa-d         ###   ########.fr       */
+/*   Updated: 2025/12/01 01:43:31 by otton-sousa      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	ack_client(int sig)
 		g_ack = 0;
 	else if (sig == SIGUSR2)
 	{
-		ft_printf("✅ FINISH!\n");
+		ft_printf("✅ Message received!\n");
 		exit (0);
 	}
 }

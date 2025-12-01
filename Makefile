@@ -3,18 +3,30 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: osousa-d <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: otton-sousa <otton-sousa@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/14 20:15:54 by osousa-d          #+#    #+#              #
-#    Updated: 2025/11/14 20:15:57 by osousa-d         ###   ########.fr        #
+#    Updated: 2025/12/01 01:35:29 by otton-sousa      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME1 = server
-NAME2 = client
+SERVER = server
+CLIENT = client
 
-SRC1 = server.c 
-SRC2 = client.c
+SRC_SERVER = server.c 
+SRC_CLIENT = client.c
+
+SERVER_BONUS = server_bonus
+CLIENT_BONUS = client_bonus
+
+SRC_SERVER_BONUS = server_bonus.c 
+SRC_CLIENT_BONUS = client_bonus.c
+
+OBJ_SERVER = $(SRC_SERVER:.c=.o)
+OBJ_CLIENT = $(SRC_CLIENT:.c=.o)
+
+OBJ_SERVER_BONUS = $(SRC_SERVER_BONUS:.c=.o)
+OBJ_CLIENT_BONUS = $(SRC_CLIENT_BONUS:.c=.o)
 
 INCLUDES = -Ilibftprintf/ft_printf -Ilibftprintf/libft -I.
 
@@ -24,29 +36,34 @@ LIBFTPRINTF = $(LIBFTPRINTF_DIR)/libftprintf.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-OBJ1 = $(SRC1:.c=.o)
-OBJ2 = $(SRC2:.c=.o)
-
-all: $(NAME1) $(NAME2)
-
-$(NAME1): $(OBJ1) $(LIBFTPRINTF)
-	$(CC) $(OBJ1) -Llibftprintf -lftprintf -o $(NAME1)
-
-$(NAME2): $(OBJ2) $(LIBFTPRINTF)
-	$(CC) $(OBJ2) -Llibftprintf -lftprintf -o $(NAME2)
-
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+all: $(SERVER) $(CLIENT)
+
+$(SERVER): $(OBJ_SERVER) $(LIBFTPRINTF)
+	$(CC) $(OBJ_SERVER) -Llibftprintf -lftprintf -o $(SERVER)
+
+$(CLIENT): $(OBJ_CLIENT) $(LIBFTPRINTF)
+	$(CC) $(OBJ_CLIENT) -Llibftprintf -lftprintf -o $(CLIENT)
+
+bonus: $(SERVER_BONUS) $(CLIENT_BONUS)
+
+$(SERVER_BONUS): $(OBJ_SERVER_BONUS) $(LIBFTPRINTF)
+	$(CC) $(OBJ_SERVER_BONUS) -Llibftprintf -lftprintf -o $(SERVER_BONUS)
+
+$(CLIENT_BONUS): $(OBJ_CLIENT_BONUS) $(LIBFTPRINTF)
+	$(CC) $(OBJ_CLIENT_BONUS) -Llibftprintf -lftprintf -o $(CLIENT_BONUS)
 
 $(LIBFTPRINTF):
 	make -C $(LIBFTPRINTF_DIR)
 	
 clean:
-	rm -f $(OBJ1) $(OBJ2)
+	rm -f $(OBJ_SERVER) $(OBJ_CLIENT) $(OBJ_SERVER_BONUS) $(OBJ_CLIENT_BONUS)
 	make clean -C $(LIBFTPRINTF_DIR)
 
 fclean: clean
-	rm -f $(NAME1) $(NAME2)
+	rm -f $(SERVER) $(CLIENT) $(SERVER_BONUS) $(CLIENT_BONUS)
 	make fclean -C $(LIBFTPRINTF_DIR)
 
 re: fclean all
