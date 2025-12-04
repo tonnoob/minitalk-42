@@ -6,7 +6,7 @@
 /*   By: otton-sousa <otton-sousa@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 18:41:41 by osousa-d          #+#    #+#             */
-/*   Updated: 2025/12/01 01:43:31 by otton-sousa      ###   ########.fr       */
+/*   Updated: 2025/12/04 10:29:40 by otton-sousa      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	ack_client(int sig)
 	}
 }
 
-void	send_message(unsigned char byte, __pid_t server_pid)
+static void	send_message(unsigned char byte, __pid_t server_pid)
 {
 	int	bit;
 

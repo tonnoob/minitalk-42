@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osousa-d <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: otton-sousa <otton-sousa@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 18:41:57 by osousa-d          #+#    #+#             */
-/*   Updated: 2025/11/27 18:41:59 by osousa-d         ###   ########.fr       */
+/*   Updated: 2025/12/04 10:29:20 by otton-sousa      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	ack_client(int sig)
 		g_ack = 0;
 }
 
-void	send_message(unsigned char byte, __pid_t server_pid)
+static void	send_message(unsigned char byte, __pid_t server_pid)
 {
 	int	bit;
 
