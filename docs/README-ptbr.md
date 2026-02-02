@@ -95,9 +95,9 @@ Pra executar com o bônus é só trocar o `./server` por `./server_bonus`, o mes
 Durante a criação do projeto eu estudei um pouco sobre **UTF-8**, talvez possa te ajudar!!
 
 📚 Documentação adicional:
-- [Entendendo UTF-8 - pt-br](docs/utf8_explaned-ptbr.md)
+- [Entendendo UTF-8 - pt-br](utf8_explaned-ptbr.md)
 
-- [Understanding UTF-8 - en](docs/utf8_explaned.md)
+- [Understanding UTF-8 - en](utf8_explaned.md)
 
 ---
 ## Fontes
