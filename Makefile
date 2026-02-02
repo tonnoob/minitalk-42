@@ -16,6 +16,8 @@ OBJ_CLIENT = $(SRC_CLIENT:.c=.o)
 OBJ_SERVER_BONUS = $(SRC_SERVER_BONUS:.c=.o)
 OBJ_CLIENT_BONUS = $(SRC_CLIENT_BONUS:.c=.o)
 
+OBJ = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))
+
 INCLUDES = -Ilibftprintf/ft_printf -Ilibftprintf/libft -I.
 
 LIBFTPRINTF_DIR = libftprintf
