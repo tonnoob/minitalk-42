@@ -1,6 +1,6 @@
 *This project was created as part of curriculum 42 by osousa-d.*
 
-[Versão em Português 🇧🇷](doc/README-ptbr.md)
+[Versão em Português 🇧🇷](docs/README-ptbr.md)
 
 # Minitalk
 
