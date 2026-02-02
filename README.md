@@ -2,6 +2,8 @@
 
 [Versão em Português 🇧🇷](docs/README-ptbr.md)
 
+![](docs/score.png)
+
 # Minitalk
 
 ## Description

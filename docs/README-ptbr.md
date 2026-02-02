@@ -1,5 +1,7 @@
 *Este projeto foi criado como parte do currículo 42 por osousa-d.*
 
+![](docs/score.png)
+
 # Minitalk
 
 ## Descrição
