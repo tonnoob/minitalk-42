@@ -6,11 +6,11 @@
 /*   By: otton-sousa <otton-sousa@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/28 14:07:43 by osousa-d          #+#    #+#             */
-/*   Updated: 2026/02/01 23:06:28 by otton-sousa      ###   ########.fr       */
+/*   Updated: 2026/02/02 01:32:17 by otton-sousa      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "../includes/minitalk.h"
 
 static void	handler_signal(int sig, siginfo_t *info, void *context)
 {

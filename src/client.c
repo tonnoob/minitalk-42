@@ -6,11 +6,11 @@
 /*   By: otton-sousa <otton-sousa@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 18:41:57 by osousa-d          #+#    #+#             */
-/*   Updated: 2026/02/02 00:37:33 by otton-sousa      ###   ########.fr       */
+/*   Updated: 2026/02/02 01:33:19 by otton-sousa      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "../includes/minitalk.h"
 
 volatile sig_atomic_t	g_ack = 1;
 

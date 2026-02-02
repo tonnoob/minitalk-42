@@ -1,91 +1,111 @@
-*Este projeto foi criado como parte do currículo 42 por osousa-d.*
+*This project was created as part of curriculum 42 by osousa-d.*
+
+[Versão em Português 🇧🇷](doc/README-ptbr.md)
 
 # Minitalk
 
-## Descrição
+## Description
 
-Minitalk é um projeto do currículo da 42 que explora comunicação entre processos (IPC) em C utilizando **sinais UNIX**.
-O objetivo é estabelecer um canal de comunicação entre um `client` e um `server`, onde as mensagens são transmitidas bit a bit por meio de sinais.
+Minitalk is a project from curriculum 42 that explores inter-process communication (IPC) in C using **UNIX signals**.
 
-O projeto reforça conceitos de baixo nível como tratamento de sinais, operações bitwise, sincronização de processos e codificação de caracteres **UTF-8**, exigindo controle cuidadoso de tempo e interpretação dos dados.
+The goal is to establish a communication channel between a client and a server, where messages are transmitted bit by bit through signals.
 
-Simplificando: existem um `server` e um `client`. O `client` recebe uma string, a quebra em bits (0 e 1) e envia esses bits individualmente através de sinais. O `server` recebe os sinais correspondentes a 0 e 1, reconstrói os bytes e, ao final, monta novamente a string original, imprimindo o resultado na tela.
+The project reinforces low-level concepts such as signal handling, bitwise operations, process synchronization, and **UTF-8** character encoding, requiring careful timing control and data interpretation.
 
----
-## Compilação
-
-Pra compilar é simples, Na raiz do projeto, execute:
-```bash
-Make
-```
-Gerando os executaveis `server` e `client`
-
-ou
-```bash
-Make bonus
-```
-Gerando os executaveis `server_bonus` e `client_bonus`
-(isso cria os executaveis do bonus)
+Simply put: there is a server and a client. The client receives a string, breaks it into bits (0 and 1), and sends these bits individually through signals. The server receives the signals corresponding to 0 and 1, reconstructs the bytes, and finally reassembles the original string, printing the result on the screen.
 
 ---
-## Instruções
+## Compilation
 
-Agora funciona da seguinte forma, independente se for os bonus ou não
+To compile, it's simple. In the project root, run:
 
-Inicie o `server`
+```bash
+make
+```
+Generating the executables `server` and `client`
+
+or
+```bash
+make bonus
+```
+Generating the executables `server_bonus` and `client_bonus`
+
+(this creates the bonus executables)
+
+---
+You can also use these commands:
+
+Cleans up `.o` files
+```bash
+make clean
+```
+Cleans up `.o` files and executable files
+```bash
+make fclean
+```
+Recompiles everything
+```bash
+make re
+```
+
+---
+## Instructions
+
+Now it works as follows, regardless of whether it's the bonus or not:
+
+Start the `server`
 ```bash
 ./server
 ```
-Ele vai printar no terminal o seu **PID**
-Exemplo:
+It will print your **PID** in the terminal.
+
+Example:
 ```bash
-➜  minitalk-42 git:(main) ✗ ./server
+➜ minitalk-42 git:(main) ✗ ./server
 PID Server: 360539
-
 ```
-(agora não vamos mais mexer aqui)
+(we won't change this anymore)
 
-Abra outro terminal e não encerre (ctrl + c) o processo do server que acabamos de iniciar
+Open another terminal and don't terminate (ctrl + c) the server process we just started.
 
-No novo terminal execute o client com o **PID** que o server vai ter exibido
+In the new terminal, run the client with the **PID** that the server will display
 ```bash
-./client 360539 "<string que você quiser>"
+./client 360539 "<string you want>"
 ```
-Na string que tu vai passar pode passar qualquer coisa, sinais, emojis, mensgens de chat... Seja criativo!
-(lembre-se que tem que estar entre aspas dupla)
+In the string you pass, you can pass anything: symbols, emojis, chat messages... Be creative!
+(remember that it has to be in double quotes)
 
-Após um `Enter` olhe o terminal que estava o rodando o seu server, A mensagem que você inseriu vai ter sido exibida pelo server e tudo isso foi possivel através de sinais **SIGUSR1** e **SIGUSR2** (1 e 0). 
+After pressing `Enter`, look at the terminal that was running your server. The message you entered will have been displayed by the server, and all of this was possible through the symbols **SIGUSR1** and **SIGUSR2** (1 and 0).
 
 ---
-## BÔNUS
-O que seria o bonus? 
+## BONUS
+What would the bonus be?
 
-- 1. O `servidor` deve confirmar cada mensagem recebida enviando um sinal para o `cliente`.
-	- O `server` após ler uma mensagem completamente envia um sinal pro client e no terminal do `client` imprime uma mensagens confirmando isso
+- 1. The `server` must confirm each received message by sending a signal to the `client`.
+	- After reading a message completely, the `server` sends a signal to the client, and the `client` terminal prints a message confirming this:
 ```Bash
 ✅ Message received!
+
 ```
+- 2. Support for **Unicode** characters!
 
-- 2. Suporte a caracteres **Unicode**!
+An interesting point to highlight is that both my mandatory and bonus versions support Unicode, being able to receive any kind of unusual character you might use.
 
-Um ponto bem interessante de ressaltar é que tanto o meu mandatório quanto o meu bônus tem suporte para Unicode, podendo receber todo tipo de caractér estranho que tu colocar.
-
-Pra executar com o bônus é só trocar o `./server` por `./server_bonus`, o mesmo pro client.
-(Não se esqueça de rodar `make bonus`)
+To run with the bonus, just replace `./server` with `./server_bonus`, the same for the client.
+(Don't forget to run `make bonus`)
 
 ---
-## Finalização
-Durante a criação do projeto eu estudei um pouco sobre **UTF-8**, talvez possa te ajudar!!
+## Finalization
+During the project creation, I studied a bit about **UTF-8**, maybe it can help you!!
 
-📚 Documentação adicional:
-- [Entendendo UTF-8 - pt-br](doc/utf8_explaned-ptbr.md)
+📚 Additional Documentation:
+
+- [Understanding UTF-8 - pt-br](doc/utf8_explaned-ptbr.md)
 
 - [Understanding UTF-8 - en](doc/utf8_explaned.md)
 
 ---
-## Fontes
-Esse vídeo me ajudou muito:
+## Sources
+This video helped me a lot:
 
 [UTF-8, Explained Simply](https://www.youtube.com/watch?v=vpSkBV5vydg)
-
-

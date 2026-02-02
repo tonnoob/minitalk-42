@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_issignal.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osousa-d <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: otton-sousa <otton-sousa@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/11 18:23:05 by osousa-d          #+#    #+#             */
-/*   Updated: 2025/11/11 18:23:10 by osousa-d         ###   ########.fr       */
+/*   Created: 2026/01/26 03:41:04 by otton-sousa       #+#    #+#             */
+/*   Updated: 2026/01/26 03:41:05 by otton-sousa      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "libft.h"
 
-# include "libftprintf/ft_printf/ft_printf.h"
-# include "libftprintf/libft/libft.h"
-# include <signal.h>
-
-#endif
+int	ft_issignal(int c)
+{	
+	if (c == '+')
+		return (1);
+	else if (c == '-')
+		return (-1);
+	else
+		return (0);
+}
