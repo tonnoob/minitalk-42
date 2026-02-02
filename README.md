@@ -1,6 +1,6 @@
 *This project was created as part of curriculum 42 by osousa-d.*
 
-[Versão em Português 🇧🇷](docs/README-ptbr.md)
+[Versão em Português 🇧🇷](doc/README-ptbr.md)
 
 # Minitalk
 
@@ -100,9 +100,9 @@ During the project creation, I studied a bit about **UTF-8**, maybe it can help 
 
 📚 Additional Documentation:
 
-- [Understanding UTF-8 - pt-br](docs/utf8_explaned-ptbr.md)
+- [Understanding UTF-8 - pt-br](doc/utf8_explaned-ptbr.md)
 
-- [Understanding UTF-8 - en](docs/utf8_explaned.md)
+- [Understanding UTF-8 - en](doc/utf8_explaned.md)
 
 ---
 ## Sources
